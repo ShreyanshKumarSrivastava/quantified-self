@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+
+<body style="background-color:powderblue;"></body>
+<h1 align="left" class="card-header text-white" style="background: -webkit-linear-gradient(bottom, #1a456d, #2a2c8f);">
+  Hello, {{ user.fullname }}</h1>
+
+<br>
+<div class="container emp-profile shadow-lg" style="padding-top: 30px">
+
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Tracker</th>
+        <th scope="col">Description</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for tracker in tracker %}
+      {% if tracker.user_id==user.id %}
+      <tr>
+        {% set tracker_id=tracker.id %}
+        <td><a href="{{ url_for('views.view_tracker', record_id = tracker_id) }}">{{tracker.name}}</a></td>
+        <td>{{tracker.description}}</td>
+        <td><a href="{{ url_for('views.add_log', record_id = tracker_id) }}" class="btn"
+            style="border-radius: 15px; font-size: 20px">✚</a></td>
+        <td>
+
+          <div class="dropdown">
+            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false"
+              style="border-radius: 15px;background: -webkit-linear-gradient(bottom, #FF5E0E, #FF9944);">
+              <b>Actions</b>
+            </button>
+
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="{{ url_for('views.edit_tracker', record_id = tracker_id) }}">Edit
+                Tracker</a>
+              <a class="dropdown-item" href="{{ url_for('views.delete_tracker', record_id = tracker_id) }}">Remove
+                Tracker</a>
+            </div>
+          </div>
+
+        </td>
+      </tr>
+      {% endif %}
+      {% endfor %}
+
+    </tbody>
+  </table>
+
+  <div align="center">
+    <a href="/add-tracker-page" class="btn"
+      style="border-radius: 15px;background: -webkit-linear-gradient(bottom, #320eff, #6d44ff);"><b>✩ Add
+        Tracker</b></a>
+  </div>
+</div>
+{% endblock %}

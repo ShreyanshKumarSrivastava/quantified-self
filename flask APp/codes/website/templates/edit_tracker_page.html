@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% block title %}Edit Tracker{% endblock %}
+
+{% block content %}
+
+<body style="background-color:powderblue;"></body>
+        <h1 align="left" class="card-header text-white" style="background: -webkit-linear-gradient(bottom, #1a456d, #2a2c8f);">Hello, {{ user.fullname }}</h1>
+
+<form method="post">
+    <h3 align="center"></h3>
+    <div class="form-group">
+
+        <h2 style="padding-left: 580px">Edit Tracker</h2>
+
+        <div align="center">
+
+
+            <br>
+
+             <label for="name">Name</label>
+        <input
+            type="text"
+            class="form-control"
+            id="name"
+            name="name"
+            placeholder="Enter tracker name"
+            maxlength="30"
+            style="width: 300px; border-radius: 15px; text-align: center"
+            value="{{ tracker.name }}"
+        />
+            <label for="description">Description</label>
+        <textarea
+            class="form-control"
+            id="description"
+            name="description"
+            placeholder="Enter tracker description"
+            maxlength="200"
+            style="width: 300px; border-radius: 15px; text-align: center"
+        >{{ tracker.description }}</textarea>
+
+
+            <label style="padding-top: 10px" for="type">Tracker Type</label>
+                        <select style="width: 300px;border-radius: 15px; text-align: center" id="type"  class="form-control"  name="type" required>
+                            <option value="{{ tracker.tracker_type }}">{{ tracker.tracker_type }}</option>
+                            <option value="Numerical">Numerical</option>
+                            <option value="Multiple Choice">Multiple Choice</option>
+                            <option value="Fahrenheit">Fahrenheit</option>
+                            <option value="Boolean">Boolean</option>
+
+
+                        </select>
+
+          <label for="settings">Settings <small>(Optional)</small></label>
+        <input
+            type="text"
+            class="form-control"
+            id="settings"
+            name="settings"
+            placeholder="Enter tracker settings"
+            maxlength="80"
+            style="width: 300px; border-radius: 15px; text-align: center"
+            value="{{ tracker.settings }}"
+        />
+
+            <br>
+            <button type="submit" class="btn" style="border-radius: 12px;background: -webkit-linear-gradient(top, #071f8b, #4486ff);"><b>✩ Update Tracker</b></button>
+
+        </div>
+
+
+    </div>
+</form>
+
+{% endblock %}
